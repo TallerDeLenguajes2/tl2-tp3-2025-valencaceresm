@@ -1,14 +1,20 @@
-public class Cadeteria
-{
-    private string nombre;
-    private string telefono;
-    private List<Cadete> listadoCadetes;
-    private List<Pedido> listadoPedidos;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-    public string Nombre { get => nombre; }
-    public string Telefono { get => telefono; }
-    public List<Cadete> ListadoCadetes { get => listadoCadetes; }
-    public List<Pedido> ListadoPedidos { get => listadoPedidos; }
+namespace CadeteriaApp
+{
+    public class Cadeteria
+    {
+        private string nombre;
+        private string telefono;
+        private List<Cadete> listadoCadetes;
+        private List<Pedido> listadoPedidos;
+
+        public string Nombre { get => nombre; }
+        public string Telefono { get => telefono; }
+        public List<Cadete> ListadoCadetes { get => listadoCadetes; }
+        public List<Pedido> ListadoPedidos { get => listadoPedidos; }
 
     //Constructor
     public Cadeteria(string nombre, string telefono, List<Cadete> cadetes)
@@ -35,9 +41,16 @@ public class Cadeteria
         }
     }
 
-    public double JornalACobrar(int idCadete)
-    {
-        var pedidosCadete = listadoPedidos.Where(p => p.CadeteAsignado != null && p.CadeteAsignado.Id == idCadete && p.Estado == EstadoPedido.Entregado);
-        return pedidosCadete.Count() * 500; // cada pedido entregado vale 500
+        public double JornalACobrar(int idCadete)
+        {
+            var pedidosCadete = listadoPedidos.Where(p => p.CadeteAsignado != null && p.CadeteAsignado.Id == idCadete && p.Estado == EstadoPedido.Entregado);
+            return pedidosCadete.Count() * 500; // cada pedido entregado vale 500
+        }
+
+        // Método que retorna string en lugar de usar Console.WriteLine
+        public string MostrarNombreCadeteria()
+        {
+            return this.Nombre;
+        }
     }
 }
